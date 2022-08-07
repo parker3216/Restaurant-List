@@ -1,5 +1,5 @@
 # 我的餐廳清單
-使用express和node.js建立的餐廳清單，並新增CURD功能
+使用express和node.js建立的餐廳清單，並新增CURD功能及重構清單
 
 ## 專案功能
 - 使用者可以新增一家餐廳
@@ -15,6 +15,7 @@
 - mongoose - v6.4.6
 - MongoDB
 - body-parser - v1.20.0
+- method-override 3.0.0
 
 ## 安裝及執行程序
 1.將專案clone到本機
