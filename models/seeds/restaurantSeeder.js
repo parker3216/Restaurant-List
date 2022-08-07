@@ -1,11 +1,7 @@
-const mongoose = require('mongoose') // 載入 mongoose
 const Restaurant = require('../restaurant') // 載入 restaurant model
 const restaurantList = require("../../restaurant.json").results //載入清單
 
-mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
-
-
-const db = mongoose.connection // 取得資料庫連線狀態
+const db = require('../../config/mongoose') // 引用mongoose連線
 
 // 連線異常
 db.on('error', () => {
