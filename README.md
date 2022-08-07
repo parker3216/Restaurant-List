@@ -34,8 +34,8 @@ $ cd restaurant_list
    
 5.當終端機出現下列字樣代表伺服器起動成功
 ```bash
-The server is running on http://localhost:3000
-mongodb connected
+Listening on http://localhost:3000
+mongodb connected!
  ```
 
 6.開啟瀏覽器網址列輸入 http://localhost:3000/ 即可看到本專案的網頁呈現
