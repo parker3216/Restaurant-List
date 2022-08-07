@@ -15,7 +15,7 @@ db.on('error', () => {
 // 連線成功
 db.once('open', () => {
   console.log('loading restaurantSeeder data!')
-  
+
   Restaurant.create(restaurantList)
     .then(() => {
       console.log("done")
