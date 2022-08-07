@@ -18,15 +18,16 @@
 
 ## 安裝及執行程序
 1.將專案clone到本機
-
+   ```bash
+$ git clone https://github.com/parker3216/Restaurant-List.git
+   ```
 2.進入專案資料夾
-```
+   ```
 $ cd restaurant_list
-```
+   ```
 3.確認已安裝node.js,npm套件,MongoDb雲端版,圖形化介面Robo3T
 
 4.啟用伺服器執行app.js檔案
-
    ```bash
    npm run dev
    ```
