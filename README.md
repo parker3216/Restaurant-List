@@ -28,10 +28,14 @@ $ cd restaurant_list
    ```
 3.設定MONGO_URI
 將下列連結中的alpha改為自己的使用者名稱,camp改為自己的使用者密碼
+Mac設定如下
 ```
 export MONGODB_URI="mongodb+srv://alpha:camp@cluster0.h1zdvoc.mongodb.net/restaurant_list?retryWrites=true&w=majority"
 ```
-
+Windows設定如下：
+```
+set MONGODB_URI="mongodb+srv://alpha:camp@cluster0.h1zdvoc.mongodb.net/restaurant_list?retryWrites=true&w=majority"
+```
 4.確認已安裝node.js,npm套件,MongoDb雲端版,圖形化介面Robo3T
 
 
