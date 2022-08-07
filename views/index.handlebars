@@ -42,7 +42,7 @@
               <div class="card-footer d-flex justify-content-end flex-wrap">
               <a href="/restaurants/{{this._id}}/edit"><button class="btn-outline-dark">Edit</button></a>
               <a href="/restaurants/{{this._id}}"><button class="btn-outline-success">Details</button></a>
-              <form action="./restaurants/{{ this._id }}/delete" method="post">
+              <form action="./restaurants/{{ this._id }}?_method=DELETE" method="post">
                 <button type="submit" class="btn-outline-danger">Delete</button>
               </form>
             </div>

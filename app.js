@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const mongoose = require('mongoose') // 載入 mongoose
 const Restaurant = require('./models/restaurant') // 載入 restaurant model
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override') // 載入 method-override
 
 mongoose.connect(process.env.MONGODB_URI) // 設定連線到 mongoDB
 // 取得資料庫連線狀態
@@ -24,6 +25,7 @@ app.engine('handlebars',exphbs({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 //新增頁面
 app.get('/restaurants/new', (req, res) => {
@@ -38,7 +40,7 @@ app.post('/restaurants', (req, res) => {
 })
 
 //刪除餐廳資料
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndDelete(id)
     .then(() => res.redirect('/'))
@@ -91,7 +93,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 //修改餐廳資料
-app.post('/restaurants/:id/edit', (req, res) => {
+app.put('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${req.params.id}`))
