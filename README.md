@@ -8,7 +8,7 @@
 - 使用者可以修改一家餐廳的資訊
 - 使用者可以刪除一家餐廳
 
-##環境建置要求
+## 環境建置要求
 - Node.js - v16.15.1
 - Express - v4.16.4
 - Express-Handlebars - v3.0.0
@@ -16,11 +16,13 @@
 - MongoDB
 - body-parser - v1.20.0
 
-##安裝及執行程序
+## 安裝及執行程序
 1.將專案clone到本機
 
 2.進入專案資料夾
-
+```
+$ cd restaurant_list
+```
 3.確認已安裝node.js,npm套件,MongoDb雲端版,圖形化介面Robo3T
 
 4.啟用伺服器執行app.js檔案
@@ -36,4 +38,6 @@ mongodb connected
  ```
 
 6.開啟瀏覽器網址列輸入 http://localhost:3000/ 即可看到本專案的網頁呈現
+
+
 
