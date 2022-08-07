@@ -1,6 +1,7 @@
 // 引用 Express 與 Express 路由器
 const express = require('express')
 const router = express.Router()
+const restaurant = require('../../models/restaurant')
 
 const Restaurant = require('../../models/restaurant') //引用Restaurant model
 
@@ -17,7 +18,7 @@ router.post('/', (req, res) => {
 })
 
 //刪除餐廳資料
-router.delete('/:id/delete', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndDelete(id)
     .then(() => res.redirect('/'))
@@ -43,7 +44,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 //修改餐廳資料
-router.put('/:id/edit', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id
   Restaurant.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${req.params.id}`))
