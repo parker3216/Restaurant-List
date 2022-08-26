@@ -5,10 +5,13 @@ const router = express.Router()
 const home = require('./modules/home')
 const restaurants = require('./modules/restaurants')
 const users = require('./modules/users') //載入users model
+const { authenticator } = require('../middleware/auth') //載入middleware
 
 
-router.use('/', home)
-router.use('/restaurants' , restaurants)
+
+router.use('/restaurants', authenticator, restaurants)//加入驗證程序
 router.use('/users', users)//引用users model
+router.use('/', authenticator, home)//加入驗證程
+
 
 module.exports = router 

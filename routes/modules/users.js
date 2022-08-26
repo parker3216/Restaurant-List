@@ -8,7 +8,7 @@ router.get('/login', (req,res) =>{
   res.render('login')
 })
 
-//驗證登入狀態
+//設定登入路由
 router.post('/login', passport.authenticate('local',{      
   successRedirect: '/',
   failureRedirect:'/users/login'
