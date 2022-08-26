@@ -1,15 +1,18 @@
 //載入Express 和 express.Router
 const express = require('express')
 const router = express.Router()
-const User = require('../../models/user')
+const User = require('../../models/user') //引用User Model
+const passport = require('passport') //引用passport
 
 router.get('/login', (req,res) =>{
   res.render('login')
 })
 
-router.post('/login', (req, res) => {
-
-})
+//驗證登入狀態
+router.post('/login', passport.authenticate('local',{      
+  successRedirect: '/',
+  failureRedirect:'/users/login'
+}))
 
 router.get('/register', (req, res) =>{
   res.render('register')
