@@ -30,6 +30,14 @@ app.use(methodOverride('_method'))
 
 usePassport(app)//使用usePassport並傳入app參數
 
+//設定view可使用的middleware
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
+
+
 app.use(routes)
 
 
