@@ -12,23 +12,27 @@ router.get('/new', (req, res) => {
 
 //新增餐廳資料
 router.post('/', (req, res) => {
-  Restaurant.create(req.body)
+  const userId = req.user._id
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description , userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 //刪除餐廳資料
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  Restaurant.findByIdAndDelete(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  Restaurant.findOneAndDelete({ _id , userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 //查看特定餐廳
 router.get("/:id", (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -36,8 +40,9 @@ router.get("/:id", (req, res) => {
 
 //修改頁面
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  Restaurant.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
@@ -45,9 +50,11 @@ router.get('/:id/edit', (req, res) => {
 
 //修改餐廳資料
 router.put('/:id', (req, res) => {
+  const userId = req.user._id
   const id = req.params.id
-  Restaurant.findByIdAndUpdate(id, req.body)
-    .then(() => res.redirect(`/restaurants/${req.params.id}`))
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  Restaurant.findOneAndUpdate({ id, name, name_en, category, image, location, phone, google_map, rating, description , userId})
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 

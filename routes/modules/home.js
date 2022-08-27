@@ -6,28 +6,27 @@ const Restaurant = require('../../models/restaurant') //引用Restaurant model
 
 //餐廳首頁
 router.get('/', (req, res) => {
-  Restaurant.find({})
+  const userId =req.user._id  //變數設定
+  Restaurant.find({ userId }) //增加查詢條件
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
 
-//搜尋餐廳
+//搜尋餐廳頁面
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim().toLowerCase()
   if (keyword.length === 0) {
     return res.redirect('/')
   }
-  Restaurant.find()
+  const userId = req.user._id
+  const regexp = new RegExp(keyword, 'i')
+
+  Restaurant.find({ $and: [{ userId }, {$or: [{ name: regexp }, { category: regexp }]}] }) //新增userId並透過$and,$or去篩選屬於user的資料
     .lean()
-    .then(restaurants => {
-      const filterRestaurants = restaurants.filter(restaurant =>
-        restaurant.name.toLowerCase().includes(keyword) || restaurant.category.includes(keyword))
-      if (filterRestaurants.length === 0) {
-        return res.redirect('/')
-      }
-      res.render('index', { restaurants: filterRestaurants, keyword: keyword })
-    })
+    .then(restaurants => 
+      res.render('index', { restaurants, keyword })
+    )
     .catch(error => console.log(error))
 })
 
