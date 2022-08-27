@@ -5,7 +5,9 @@ const Restaurant = require('./models/restaurant') // 載入 restaurant model
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
 const flash = require('connect-flash') //引用flash套件
-
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 const usePassport = require('./config/passport')//引用Passport設定檔
 
@@ -16,7 +18,7 @@ require('./config/mongoose')//引用mongoose連線設定
 
 
 
-const PORT = 3000
+const PORT = process.env.PORT
 const app = express()
 
 
@@ -26,7 +28,7 @@ app.set('view engine', 'handlebars')
 
 //使用session套件
 app.use(session({
-  secret: 'GoodThing', //驗證session id的字串
+  secret: process.env.SESSION_SECRET, //驗證session id的字串
   resave: false,  //不強制把session更新到session store
   saveUninitialized: true //將未初始化的session存回session store
 }))
