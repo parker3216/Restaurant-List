@@ -4,10 +4,17 @@ const exphbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant') // 載入 restaurant model
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override') // 載入 method-override
+const flash = require('connect-flash') //引用flash套件
+
+
+const usePassport = require('./config/passport')//引用Passport設定檔
+
+
+
 const routes = require('./routes') //引用路由器
 require('./config/mongoose')//引用mongoose連線設定
 
-const usePassport = require('./config/passport')//引用Passport設定檔
+
 
 const PORT = 3000
 const app = express()
@@ -29,11 +36,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
 usePassport(app)//使用usePassport並傳入app參數
+app.use(flash())//掛載flash套件
 
 //設定view可使用的middleware
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
