@@ -26,20 +26,33 @@ $ git clone https://github.com/parker3216/Restaurant-List.git
    ```
 $ cd restaurant_list
    ```
-3.確認已安裝node.js,npm套件,MongoDb雲端版,圖形化介面Robo3T
+3.設定MONGO_URI
+將下列連結中的alpha改為自己的使用者名稱,camp改為自己的使用者密碼
 
-4.啟用伺服器執行app.js檔案
+Mac設定如下
+```
+export MONGODB_URI="mongodb+srv://alpha:camp@cluster0.h1zdvoc.mongodb.net/restaurant_list?retryWrites=true&w=majority"
+```
+Windows設定如下：
+```
+set MONGODB_URI="mongodb+srv://alpha:camp@cluster0.h1zdvoc.mongodb.net/restaurant_list?retryWrites=true&w=majority"
+```
+4.確認已安裝node.js,npm套件,MongoDb雲端版,圖形化介面Robo3T
+
+
+
+5.啟用伺服器執行app.js檔案
    ```bash
    npm run dev
    ```
    
-5.當終端機出現下列字樣代表伺服器起動成功
+6.當終端機出現下列字樣代表伺服器起動成功
 ```bash
 Listening on http://localhost:3000
 mongodb connected!
  ```
 
-6.開啟瀏覽器網址列輸入 http://localhost:3000/ 即可看到本專案的網頁呈現
+7.開啟瀏覽器網址列輸入 http://localhost:3000/ 即可看到本專案的網頁呈現
 
 
 
