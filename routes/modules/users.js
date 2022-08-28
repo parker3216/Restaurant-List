@@ -6,13 +6,19 @@ const passport = require('passport') //引用passport
 const bcrypt = require('bcryptjs')//引用bcrypt
 
 router.get('/login', (req,res) =>{
-  res.render('login')
+  const errorMessage = req.flash('error')
+  const errors = []
+  if (errorMessage.length) {
+    errors.push({ message:errorMessage})
+  }
+  res.render('login', {errors})
 })
 
 //設定登入路由
 router.post('/login', passport.authenticate('local',{      
   successRedirect: '/',
-  failureRedirect:'/users/login'
+  failureRedirect:'/users/login',
+  failureFlash: true  
 }))
 
 router.get('/register', (req, res) =>{
